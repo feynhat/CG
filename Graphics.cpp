@@ -15,6 +15,7 @@ namespace CG {
 	bool Point::operator<(Point p)
 	{
 		if (x < p.x) return true;
+		if (x == p.x && y < p.y) return true;
 		return false;
 	}
 
@@ -59,15 +60,15 @@ namespace CG {
 		return false;
 	}
 
-	Polygon ConvexHull(std::vector<Point> points)
+	Polygon ConvexHull(std::vector<Point>& points)
 	{
 		/*
 		Input: a vector of **distinct** points
-		Output: a Polygon object describing the bounding polygon of the
-		convex hull in clockwise order, starting from the left-most
-		point
-		This algorithm is an implementation of the gift-wrapping
-		algorithm, described in [de Berg, van Kreveld et. al.]
+		Output: a Polygon object describing the bounding polygon of the convex
+		hull in clockwise order, starting from the left-most point.
+
+		This algorithm is an implementation of the incremental algorithm,
+		described in [de Berg, van Kreveld et. al.]
 		*/
 		if (points.size() <= 2)
 			return Polygon(points);
@@ -102,6 +103,7 @@ namespace CG {
 
 		lower_hull.push_back(points[n-1]);
 		lower_hull.push_back(points[n-2]);
+
 		for (int i = n-3; i >= 0; --i) {
 			lower_hull.push_back(points[i]);
 			int m = lower_hull.size();

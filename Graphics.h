@@ -2,8 +2,7 @@
 
 namespace CG {
 
-	class Point {
-	public:
+	struct Point {
 		Point() : x{0}, y{0} {};
 		Point(float f1, float f2) : x{f1}, y{f2} {};
 		float x;
@@ -12,8 +11,7 @@ namespace CG {
 		bool operator==(Point);
 	};
 
-	class LineSegment {
-	public:
+	struct LineSegment {
 		LineSegment(Point p, Point q) : begin{p}, end{q} {};
 		Point begin;
 		Point end;
@@ -24,15 +22,15 @@ namespace CG {
 		bool pointInSegment(Point p);
 	};
 
-	class Polygon {
-	public:
+	struct Polygon {
 		Polygon() {};
-		Polygon(std::vector<Point> v) : points{v} {};
+		Polygon(std::vector<Point>& v) : points{v} {};
 		std::vector<Point> points;
 	};
 
 	float dist(Point, Point);
 
-	Polygon ConvexHull(std::vector<Point>);
-
+	Polygon ConvexHull(std::vector<Point>&);
+	
+	std::vector<Point> Intersections(std::vector<LineSegment>&);
 }

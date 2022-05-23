@@ -10,15 +10,14 @@ using std::vector;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Convex Hull");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "Convex Hull");
 	vector<Point> points;
 
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
+	while (window.isOpen()) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
 
-            if (event.type == sf::Event::Closed)
-                window.close();
+			if (event.type == sf::Event::Closed) window.close();
 
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Q) {
@@ -39,9 +38,9 @@ int main()
 						points.push_back(p);
 				}
 			}
-        }
+		}
 
-        window.clear(sf::Color::White);
+		window.clear(sf::Color::White);
 
 		Polygon convex_hull = ConvexHull(points);
 		sf::ConvexShape conv;
@@ -61,7 +60,7 @@ int main()
 		}
 		window.display();
 
-    }
+	}
 
-    return 0;
+	return 0;
 }
