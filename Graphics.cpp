@@ -5,6 +5,7 @@
 
 namespace CG {
 
+
 	float dist(Point p, Point q)
 	{
 		float dx = p.x - q.x;
@@ -56,8 +57,37 @@ namespace CG {
 
 	bool LineSegment::pointInSegment(Point p)
 	{
-		if (dist(begin, p) + dist(p, end) == length()) return true;
+		if (abs(dist(begin, p) + dist(p, end) - length()) < EPSILON) return true;
 		return false;
+	}
+
+	bool LineSegment::intersects(LineSegment l)
+	{
+		Point p = intersection(l);
+		return p.x > -INFINITY && pointInSegment(p) && l.pointInSegment(p);
+	}
+
+	std::vector<float> LineSegment::equation()
+	{
+		float a = (end.y - begin.y);
+		float b = -(end.x - begin.x);
+		float c = begin.y*(end.x-begin.x)-begin.x*(end.y-begin.y);
+		std::vector<float> out = {a, b, c};
+		return out;
+	}
+
+	Point LineSegment::intersection(LineSegment l)
+	{
+		auto eq1 = equation();
+		auto eq2 = l.equation();
+		float D = eq1[0]*eq2[1] - eq2[0]*eq1[1];
+		float X = -INFINITY;
+		float Y = -INFINITY;
+		if (D) {
+			X = (eq1[1]*eq2[2] - eq2[1]*eq1[2])/D;
+			Y = (eq1[2]*eq2[0] - eq2[2]*eq1[0])/D;
+		}
+		return Point(X, Y);
 	}
 
 	Polygon ConvexHull(std::vector<Point>& points)
