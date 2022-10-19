@@ -15,12 +15,21 @@ distros, it goes by the name `libsfml-dev`.
 And of course, it goes without saying, you must have a standard C++
 compiler. (I will only test with the latest stable GNU C++ compiler).
 
-After installing the dependencies (`g++` and `sfml`), `cd` to the root and run:
+After installing the dependencies (`g++` and `sfml`), `cd` to the root and run
+one of the following examples.
+
+## Examples
+
+### Convex Hull
 
     g++ -c convex-hull-example.cpp && g++ convex-hull-example.o -o convex-hull.app -lsfml-graphics -lsfml-window -lsfml-system Graphics.cpp && ./convex-hull.app
 
 ![Convex Hull Example](https://i.imgur.com/AQzWLGa.png)
 
-Click to add a point.
+### Line Segment Intersections
+
+    g++ -c example-line-segment-intersections.cpp && g++ example-line-segment-intersections.cpp -o intersection.app -lsfml-graphics -lsfml-window -lsfml-system Graphics.cpp && ./intersection.app
+
+![Line Segment Intersections Example](https://i.imgur.com/M2Od3Ik.png)
 
 Press 'Q' to quit.
