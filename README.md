@@ -30,6 +30,6 @@ one of the following examples.
 
     g++ -c example-line-segment-intersections.cpp && g++ example-line-segment-intersections.cpp -o intersection.app -lsfml-graphics -lsfml-window -lsfml-system Graphics.cpp && ./intersection.app
 
-![Line Segment Intersections Example](https://i.imgur.com/M2Od3Ik.png)
+![Line Segment Intersections Example](https://i.imgur.com/heyj6di.png)
 
 Press 'Q' to quit.
